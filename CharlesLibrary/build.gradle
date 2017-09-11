@@ -7,7 +7,7 @@ ext {
 
     publishedGroupId = 'com.robotsandpencils.charles'
     libraryName = 'CharlesLibrary'
-    artifact = 'charles-library'
+    artifact = 'CharlesLibrary'
 
     libraryDescription = 'Charles Trust Certificate Library for Android'
 
