@@ -1,44 +1,70 @@
-# Charles
-An android library to trust user installed CA certificates (e.g. the Charles Root Certificate).
+# Charles Trust
 
-# Synopsis
+This is an android library to trust user installed CA certificates (e.g. the Charles Root Certificate).
+
+## Synopsis
 The cleaner solution to share Charles proxy settings is to create a classless android library with an android manifest and network security config file.
 
 I did create a groovy plugin to apply to any app build.gradle file.  The resulting logic would modify all the app project files to integrate the Charles proxy settings.
 
 However, the integration of an android library is much simpler.  Then, the bulk of the integration work can be left to Android Studio.
 
-# Details
+## Getting Started
 
-The library defines an AndroidManifest.xml file with one setting.
+The library is uploaded on bintray, and shared on jcenter.
 
-<application
-        android:networkSecurityConfig="@xml/network_security_config"/>
-        
-The library also contains a resource file, network_security_config.xml, that tells an android device running an app with this library to trust user certificates, like the Charles trust certificate, for Android N onwards.
+To use this library, modify your project's build.gradle file.
 
-The other key setting is in the app build.gradle file.  This line makes it a library.
+Add jcenter() to the following closures.
 
-apply plugin: 'com.android.library'
+```
+buildscript {
+    
+    repositories {
+        ...
+        jcenter()
+        ...
+    }
 
-# Deployment
+}
 
-Ibid: https://docs.gradle.org/current/userguide/publishing_maven.html
 
-Maven makes the sharing of the library very easy.
+allprojects {
 
-The key part to enable this is this line in the app build.gradle file.
+    repositories {
+        ...
+        jcenter()
+        ...
+    }
 
-apply plugin: 'maven-publish'
+}
+```
 
-Then, all the details in publishing closure in the app build.gradle defines how to identify the library, and where to put the library.
+Add the following dependency to your app module's build.gradle file.
 
-The deployment is easy, as well.  Go to the terminal.  The recipe is:
+```
+dependencies {
 
-> ./gradlew clean build
-> ./gradlew publishToMavenLocal
+    ...
+    compile 'com.robotsandpencils.charles:CharlesLibrary:0.0.1'
+    ...
 
-# Configuration
+}
+```
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+To use this library, you need an Android app running on Android OS version N or greater.
+
+### Installing
+
+The library is installed by leveraging Android Studio's integration with jcenter.
+
+No installation steps are needed.
+
+# Configuration for Tests
 
 Ibid: https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/
 Ibid: https://www.charlesproxy.com/documentation/proxying/ssl-proxying/
@@ -74,3 +100,72 @@ Steps to set the proxy IP address and port on the emulator are:
 10) Click Save menu item.
 11) Tap back button 2x.
 12) Toggle WiFi off/on.
+
+## Running the tests
+
+There are no code tests, since this library only contains configuration settings in AndroidManifest.xml and network_security_config.xml.
+
+The test is add this library to an app that has HTTPS api calls.
+
+If you see your GET/POST/PUT/UPDATE/DELETE calls getting logged in Charles, then the Charles certificate is trusted because the library is present.
+
+## Deployment
+
+This project is pre-configured to communicate with the appropriate package on bintray.
+
+If any properties must be modified, then the developer would get this project.
+
+eg) promote version
+```
+git clone git@github.com:RobotsAndPencils/CharlesTrustCertificateLibrary.git
+git checkout -d promote_version
+```
+
+This library project is intended to be edited in Android Studio
+
+Open the library module's build.gradle, and modify:
+
+```
+ext {
+
+    ...
+    libraryVersion = '0.0.2'
+    ...
+
+}
+```
+
+Open the Terminal tab, and execute the following:
+
+```
+> ./gradlew clean build
+> ./gradlew install
+> ./gradlew bintrayUpload
+```
+
+## Built With
+
+* [bintray](https://bintray.com) - The SaaS repository
+  https://inthecheesefactory.com/blog/how-to-upload-library-to-jcenter-maven-central-as-dependency/en
+* [Maven](https://maven.apache.org/) - Dependency Management
+
+## Authors
+
+* **Phillip Wray** - *Initial work* - [CharlesTrust](https://github.com/RobotsAndPencils/CharlesTrustCertificateLibrary)
+
+See also the list of [contributors](https://github.com/RobotsAndPencils/CharlesTrustCertificateLibrary/graphs/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/
+* https://medium.com/@hackupstate/using-charles-proxy-to-debug-android-ssl-traffic-e61fc38760f7
+* https://inthecheesefactory.com/blog/how-to-upload-library-to-jcenter-maven-central-as-dependency/en
+* Farhan Khan
+* Neal Sanche
+* Uche Okeke
+* Vitaly Nikolaychuk
+* Les Friesen

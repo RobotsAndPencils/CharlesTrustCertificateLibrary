@@ -1,6 +1,29 @@
 apply plugin: 'com.android.library'
-
 apply plugin: 'maven-publish'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'CharlesTrust'
+
+    publishedGroupId = 'com.robotsandpencils.charles'
+    libraryName = 'CharlesLibrary'
+    artifact = 'CharlesLibrary'
+
+    libraryDescription = 'Charles Trust Certificate Library for Android'
+
+    siteUrl = 'https://github.com/RobotsAndPencils/CharlesTrustCertificateLibrary'
+    gitUrl = 'https://github.com/RobotsAndPencils/CharlesTrustCertificateLibrary.git'
+
+    libraryVersion = '0.0.1'
+
+    developerId = 'android'
+    developerName = 'Robots & Pencils Android Team'
+    developerEmail = 'android@robotsandpencils.com'
+
+    licenseName = 'The MIT License (MIT)'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
+}
 
 android {
     compileSdkVersion 26
@@ -21,7 +44,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.0.1'
+    implementation 'com.android.support:appcompat-v7:26.0.2'
 }
 
 publishing {
@@ -48,3 +71,6 @@ model {
     }
 
 }
+
+apply from: '../installv1.gradle'
+apply from: '../bintrayv1.gradle'
