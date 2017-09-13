@@ -14,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/RobotsAndPencils/CharlesTrustCertificateLibrary'
     gitUrl = 'https://github.com/RobotsAndPencils/CharlesTrustCertificateLibrary.git'
 
-    libraryVersion = '0.0.1'
+    libraryVersion = '0.0.2'
 
     developerId = 'android'
     developerName = 'Robots & Pencils Android Team'
@@ -29,7 +29,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
-        minSdkVersion 26
+        minSdkVersion 24
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
