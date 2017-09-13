@@ -14,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/RobotsAndPencils/CharlesTrustCertificateLibrary'
     gitUrl = 'https://github.com/RobotsAndPencils/CharlesTrustCertificateLibrary.git'
 
-    libraryVersion = '0.0.2'
+    libraryVersion = '0.0.3'
 
     developerId = 'android'
     developerName = 'Robots & Pencils Android Team'
@@ -29,7 +29,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
-        minSdkVersion 24
+        minSdkVersion 9
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -44,7 +44,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.0.2'
+//    implementation 'com.android.support:appcompat-v7:26.0.2'
 }
 
 publishing {
